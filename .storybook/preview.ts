@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react";
+import "../src/App.css"; //@tailwind 를 해온 css 파일을 연결한다.
 
 const preview: Preview = {
   parameters: {
