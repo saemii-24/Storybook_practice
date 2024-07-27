@@ -1,5 +1,5 @@
 import React from "react";
-import "./colors.css"; // Import the CSS file
+import "./colors.css";
 
 type ColorTokenProps = {
   color: string;
