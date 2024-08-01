@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+// PopOver.stories.tsx
 import { Meta } from "@storybook/react";
 import PopOver from "./PopOver";
+import { action } from "@storybook/addon-actions";
+import { useState } from "react";
 
 const meta: Meta<typeof PopOver> = {
   title: "Components/PopOver",
   component: PopOver,
   argTypes: {
-    isOpen: { control: { type: "boolean" } },
-    disabled: { control: { type: "boolean" } },
+    disabled: { control: "boolean" },
+    onOpenHandler: { action: "toggled" }, // action을 추가합니다.
   },
 };
 
 export default meta;
 
-// 스토리북에서 조절하는 컴포넌트의 부모 컴포넌트를 가상으로 만들어 조정
-export const PopOverStory: React.FC = () => {
+export const PopOverComponent: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
 
-  return <PopOver isOpen={isOpen} onToggle={() => setIsOpen(!isOpen)} />;
+  const togglePopOver = () => {
+    setIsOpen((prev) => !prev);
+    action("클릭")();
+  };
+
+  return (
+    <PopOver disabled={false} isOpen={isOpen} onOpenHandler={togglePopOver} />
+  );
 };
